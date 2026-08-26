@@ -247,3 +247,278 @@
 // }
 
 
+
+
+
+
+
+// #include<iostream>
+// using namespace std;
+// void print(int n){
+//     for(int i=1;i<=n;i++){
+//         for(int j=i;j<2*i;j++){
+//             cout<<j;
+//         }
+//         cout<<endl;
+//     }
+// }
+// int main(){
+//     print(7);
+//     return 0;
+// }
+
+
+
+// 1
+// 0 1
+// 1 0 1
+// 0 1 0 1
+// 1 0 1 0 1
+
+
+
+
+
+
+
+
+
+
+
+
+// 1      1
+// 12    21
+// 123  321
+// 12344321
+
+// #include<iostream>
+// using namespace std;
+// void print(int n){
+//     for(int i=1;i<=n;i++){
+//         for(int j=1;j<=i;j++){
+//             cout<<j;
+//         }
+//         for(int k=0;k<2*(n-i);k++){
+//             cout<<" ";
+//         }
+//         for(int z=i;z>=1;z--){
+//             cout<<z;
+//         }
+//         cout<<endl;
+//     }
+
+// }
+// int main(){
+//     print(5);
+//     return 0;
+// }
+
+
+
+// 1
+// 2 3
+// 4 5 6
+// 7 8 9 10
+// 11 12 13 14 15
+
+
+// #include<iostream>
+// using namespace std;
+// void print(int n){
+//     int count=1;
+//     for(int i=1;i<=n;i++){
+//         for(int j=1;j<=i;j++){
+//             cout<<count<<" ";
+//             count++;
+//         }
+//         cout<<endl;
+//     }
+// }
+// int main(){
+//     print(5);
+//     return 0;
+// }
+
+
+
+
+
+
+// A
+// A B
+// A B C
+// A B C D
+// A B C D E
+
+
+
+
+
+
+
+
+
+// #include<iostream>
+// using namespace std;
+// void print(int n){
+    
+//     for(int i=1;i<=n;i++){
+//         char start='A';
+//         for(int j=0;j<i;j++){
+//             cout<<start;
+//             start++;
+//         }
+//         cout<<endl;
+//     }
+// }
+// int main(){
+//     print(6);
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+// A B C D E
+// A B C D
+// A B C
+// A B
+// A
+
+
+
+// #include<iostream>
+// using namespace std;
+// void print(int n){
+//     for(int i=1;i<=n;i++){
+//         char ch='A';
+//         for(int j=n;j>=i;j--){
+//             cout<<ch<<" ";
+//             ch++;
+//         }
+//         cout<<endl;
+//     }
+// }
+// int main(){
+//     print(5);
+//     return 0;
+// }
+
+
+
+
+// A
+// B B
+// C C C
+// D D D D
+// E E E E E
+
+
+// #include<iostream>
+// using namespace std;
+// void print(int n){
+//     char ch='A';
+//     for(int i=0;i<n;i++){
+//         for(int j=0;j<=i;j++){
+//             cout<<ch<<" ";            
+//         }
+//         ch++;
+//         cout<<endl;
+//     }
+// }
+// int main(){
+//     print(5);
+//     return 0;
+// }
+
+
+
+
+
+
+// E
+// E D
+// E D C
+// E D C B
+// E D C B A
+
+
+
+
+
+// #include<iostream>
+// using namespace std;
+// void print(int n){
+//     for(int i=0;i<n;i++){
+//         char ch='A'+n-1;
+//         for(int j=0;j<=i;j++){
+//             cout<<ch<<" ";
+//             ch--;
+//         }
+//         cout<<endl;
+//     }
+// }
+// int main(){
+//     print(5);
+//     return 0;
+// }
+
+
+
+
+
+// **********
+// ****  ****
+// ***    ***
+// **      **
+// *        *
+// *        *
+// **      **
+// ***    ***
+// ****  ****
+// **********
+
+
+
+
+// #include<iostream>
+// using namespace std;
+
+// void print(int n){
+//     // Top Half
+//     for(int i=0;i<n;i++){
+//         for(int z=0;z<(n-i);z++){
+//             cout<<"*";
+//         }
+//         for(int k=0;k<2*(i);k++){
+//             cout<<" ";
+//         }
+//         for(int z=0;z<(n-i);z++){
+//             cout<<"*";
+//         }
+//         cout<<endl;
+//     } // <--- Top half ends here
+
+//     // Bottom Half
+//     for(int i=0;i<n;i++){
+//         for(int z=0;z<=i;z++){
+//             cout<<"*";
+//         }
+//         for(int k=0;k<2*(n-i-1);k++){
+//             cout<<" ";
+//         }
+//         for(int z=0;z<=i;z++){
+//             cout<<"*";
+//         }
+//         cout<<endl;
+//     }
+// }
+
+// int main(){
+//     print(5);
+//     return 0;
+// }
