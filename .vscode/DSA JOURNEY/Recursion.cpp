@@ -239,20 +239,363 @@
 
 
 
-#include<iostream>
-using namespace std;
 
-void printSubsequences(int index,string &current,const string &s){
-    current[index]=s[index];
-    printSubsequences(index+1,current,s);
-    current.pop_back();
-    printSubsequences(index+1,current,s);
-    cout<<current<<endl;
+
+
+
+
+// 1. Subsets (Power Set)
+// Problem: Return all possible subsets of an array of unique integers.
+
+// Input: nums = [1, 2, 3]
+
+// Expected Output: [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+
+// Signature: vector<vector<int>> subsets(vector<int>& nums);
+
+
+
+
+// Problem: Given an array of positive integers arr and a target sum k,
+// write a recursive function to determine whether there is at least one subset whose elements sum to k. Return true if one exists, otherwise return false.
+
+// Input: arr = [1, 2, 7], k = 9
+
+// Expected Output: true (because the subset [2, 7] sums to 9)
+
+// Function Signature:
+
+// C++
+// bool checkSubsetSum(int index, int currentSum, int k, const vector<int>& arr);
+
+
+
+
+
+
+
+
+
+// Subsequences with Target Sum $K$Problem: Given an array of integers arr and a target sum k,
+//  write a recursive function to find and print all subsequences whose elements sum up to exactly k.Input: arr = [1, 2, 1],
+// k = 2Expected Output:Plaintext[ 1 1 ]
+// [ 2 ]
+
+//void printSubsequencesWithSumK(int index, vector<int>& bag, int currentSum, int k, const vector<int>& arr);
+
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+
+// void printSubsequencesWithSumK(int index, vector<int>& bag, int currentSum, int k, const vector<int>& arr) {
+//     // 1. BASE CASE: Reached the end of the array
+//     if (index == arr.size()) {
+//         if (currentSum == k) {
+//             cout << "[ ";
+//             for (int val : bag) cout << val << " ";
+//             cout << "]\n";
+//         }
+//         return;
+//     }
+
+//     // 2. PICK BRANCH: Add element to bag & add its value to currentSum
+//     bag.push_back(arr[index]);
+//     printSubsequencesWithSumK(index + 1, bag, currentSum + arr[index], k, arr);
+
+//     // 3. BACKTRACK: Remove element
+//     bag.pop_back();
+
+//     // 4. DON'T PICK BRANCH: Skip element (currentSum remains unchanged)
+//     printSubsequencesWithSumK(index + 1, bag, currentSum, k, arr);
+// }
+
+// int main() {
+//     vector<int> arr = {1, 2, 1};
+//     int k = 2;
+//     vector<int> bag;
+
+//     printSubsequencesWithSumK(0, bag, 0, k, arr);
+
+//     return 0;
+//}
+
+
+
+
+
+
+
+
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+
+// void printSubsequencesWithSumK(int index, vector<int>& bag, int currentSum, int k, const vector<int>& arr) {
+//     // 1. BASE CASE: Reached the end of the array
+//     if (index == arr.size()) {
+//         if (currentSum == k) {
+//             cout << "[ ";
+//             for (int val : bag) {
+//                 cout << val << " ";
+//             }
+//             cout << "]\n";
+//         }
+//         return; // CRITICAL: Stop recursion and return to parent call
+//     }
+//     bag.push_back(arr[index]);
+//     printSubsequencesWithSumK(index+1,bag,currentSum+arr[index],k,arr);
+//     bag.pop_back();
+//     printSubsequencesWithSumK(index+1,bag,currentSum,k,arr);
+// }
+
+// int main() {
+//     vector<int> arr = {1, 2, 1};
+//     int k = 2;
+//     vector<int> bag;
+
+//     printSubsequencesWithSumK(0, bag, 0, 2, arr);
+
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+
+// Problem 1: Count Subsequences with Sum = $K$ (Integer Return Pattern)Objective: Given an integer array arr and a target integer k, 
+// return the total count of subsequences whose elements sum to k. Do not print the subsets; 
+// return the count as an integer from your base cases using $L + R$.Input: arr = [1, 2, 1], k = 2Expected Output: 2 (the valid subsets are [1, 1] and [2])
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// int countSubsequencesWithSumK(int index, int currentSum, int k, const vector<int>& arr){
+//     if(index==arr.size()){
+//         if(currentSum==k){
+//             return 1;
+//         }
+//     return 0;
+//     }
+//     int pick = countSubsequencesWithSumK(index + 1, currentSum + arr[index], k, arr);
+
+//     // 3. DON'T PICK BRANCH: Skip element
+//     int notPick = countSubsequencesWithSumK(index + 1, currentSum, k, arr);
+
+//     // 4. COMBINE: Return total valid paths from both subtrees
+//     return pick + notPick;
     
-}
-int main(){
-    string s="";
-    string a="weareatyourservice";
-    printSubsequences(0,s,a);
-    return 0;
-}
+// }
+// int main(){
+//     vector<int> v1={1,2,1};
+//     int k=2;
+//     int totalCount=countSubsequencesWithSumK(0,0,2,v1);
+//     cout<<"Total Subsequences with Sum " << k << " = " << totalCount << "\n";
+//     return 0;
+// }
+
+
+
+
+
+
+
+// Problem: Given an array arr and an integer k, return the total number of subsequences whose elements sum up to exactly k.
+
+// Input: arr = [3, 1, 2], k = 3
+
+// Expected Output: 2 (the valid subsequences are [3] and [1, 2])
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// int countSubsequences(int index, int currentSum, int k, const vector<int>& arr){
+//     if(index==arr.size()){
+//         if(currentSum==k){
+//             return 1;
+//         }
+//     return 0;
+//     }
+//     int pick=countSubsequences(index+1,currentSum+arr[index],k,arr);
+//     int notpick=countSubsequences(index+1,currentSum,k,arr);
+//     return pick+notpick;
+// }
+// int main(){
+//     vector<int> arr={3,1,2};
+//     int totalCount=countSubsequences(0,0,3,arr);
+//     cout<<"Total Count: "<<totalCount<<endl;
+//     return 0;
+// }
+
+
+
+
+
+
+// Problem 1: Count Subsequences with an Even Sum
+
+// Objective: Given an integer array arr, return the total number of subsequences whose sum of elements is even (including the empty subsequence where sum = 0).
+
+// Input: arr = [1, 2, 3]
+
+// Expected Output: 4
+// (The valid subsets are [] (sum 0), [2] (sum 2), [1, 3] (sum 4), [1, 2, 3] (sum 6))
+
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// int countEvenSumSubsequences(int index, int currentSum, const vector<int>& arr){
+//     if(index==arr.size()){
+//         if(currentSum%2==0){
+//             return 1;
+//         }
+//     return 0;
+//     }
+        //     PICK FUNCTION
+//     int pick=countEvenSumSubsequences(index+1,currentSum+arr[index],arr);
+        // NOT PICK FUNCTION
+//     int notpick=countEvenSumSubsequences(index+1,currentSum,arr);
+//     return pick+notpick;
+// }
+// int main(){
+//     vector<int>arr={1,2,3};
+//     int totalCount=countEvenSumSubsequences(0,0,arr);
+//     cout<<"Total Count of subsets with sum =2 is:"<<totalCount<<endl;
+//     return 0;
+// }
+
+
+
+
+
+
+// Problem: Count how many subsequences have exactly $L$ elements AND sum up to $k$.
+// Input: arr = [1, 2, 1, 3], k = 3, L = 2Expected Output: 2 (the valid subsets are [1, 2] and [2, 1])
+// Signature:C++int countSubsequencesWithLengthAndSum(int index, int currentSum, int currentLength, int k, int L, const vector<int>& arr);
+// Apply the exact same logic:In the Pick branch: increase currentLength by 1.
+// In the Don't Pick branch: keep currentLength unchanged.At index == arr.size(): check currentSum == k && currentLength == L.
+
+
+
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// int countSubsequencesWithLengthAndSum(int index, int currentSum, int currentLength, int k, int L, const vector<int>& arr){
+//     if(currentLength==L){
+//         if(currentSum==k){
+//             return 1;
+//         }
+//     return 0;
+//     }
+//     if(index==arr.size()){
+//         return 0;
+//     }
+//     //PICK
+//     int pick=countSubsequencesWithLengthAndSum(index+1,currentSum+arr[index],currentLength+1,k,L,arr);
+//     //NOT PICK...
+//     int notpick=countSubsequencesWithLengthAndSum(index+1,currentSum,currentLength,k,L,arr);
+//     return pick+notpick;
+// }
+// int main(){
+//     vector<int>v1={1,2,1,3};
+//     int k=3;
+//     int L=2;
+//     int totalCount=countSubsequencesWithLengthAndSum(0,0,0,k,L,v1);
+//     cout<<"Total count:"<<totalCount<<endl;
+//     return 0;
+// }
+
+
+
+
+
+// The goal is early exit (pruning): if the pick branch returns true, you immediately return true to collapse the call stack without ever running the notpick branch.
+
+// Input: arr = [1, 5, 11, 5], k = 10
+
+// Expected Output: true (found [5, 5])
+
+
+
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+
+// bool checkSubsetExists(int index, int currentSum, int k, const vector<int>& arr){
+//     if(index==arr.size()){
+//         if(currentSum==k){
+//             return true;
+//         }
+//     return false;
+//     }
+//     //PICK..
+//     if(checkSubsetExists(index+1,currentSum+arr[index],k,arr)){
+//         return true;
+//     }
+//     //NOT PICK..
+//     if(checkSubsetExists(index+1,currentSum,k,arr)){
+//         return true;
+//     }
+//     return false;
+
+
+// }
+// int main(){
+//     vector<int>arr={1,5,11,5};
+//     int k=10;
+//    if (checkSubsetExists(0, 0, k, arr)) {
+//         cout << "Subset with sum " << k << " exists: true\n";
+//     } else {
+//         cout << "Subset with sum " << k << " does not exist: false\n";
+//     }
+//     return 0;
+// }
+
+
+
+
+
+// Objective: Given an integer array arr, return the total count of subsequences whose sum of elements is odd.
+
+// Input: arr = [1, 2, 3]
+
+// Expected Output: 4 (Valid subsets: [1] (sum 1), [3] (sum 3), [1, 2] (sum 3), [2, 3] (sum 5))
+
+
+
+
+
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// int subsequence(int index,int currentSum,vector<int>&arr){
+//     if(index==arr.size()){
+//         if(currentSum%2!=0){
+//             return 1;
+//         }
+//     return 0;
+//     }
+//     // PICK..
+//     int pick=subsequence(index+1,currentSum+arr[index],arr);
+//     // NOT PICK..
+//     int notpick=subsequence(index+1,currentSum,arr);
+//     return pick+notpick;
+// }
+// int main(){
+//     vector<int>v1={1,2,3};
+//     int totalCount=subsequence(0,0,v1);
+//     cout<<"TOTAL COUNT: "<<totalCount<<endl;
+//     return 0;
+// }
+
+
+
+
+
+
