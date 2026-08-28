@@ -596,6 +596,247 @@
 
 
 
+// Concept: Multi-pointer state tracking and base condition termination.
+
+// Task: Reverse a vector<int>& arr in-place using recursion without using std::reverse or creating a second array.
+
+// Input: arr = [1, 2, 3, 4, 5]
+
+// Expected Output: arr becomes [5, 4, 3, 2, 1]
+
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// //arr = [1, 2, 3, 4, 5]
+// void reverseArray(int l, int r, vector<int>& arr){
+//     if(l>=r){
+//         return;
+//     }
+//     swap(arr[l],arr[r]);
+//     reverseArray(l+1,r-1,arr);
+ 
+// }
+// int main(){
+//     vector<int>arr={1,2,3,4,5};
+//     reverseArray(0,arr.size()-1,arr);
+//        cout<<"{";
+//     for(auto i=arr.begin();i<arr.end();i++){
+//         cout<<*i;
+//     }
+//     cout<<"}";
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+// Problem 2: Check if String is Palindrome (Single Index)Concept: Single-index recursion mapping to symmetric indices ($i$ and $n - i - 1$).
+// Task: Return true if a string $s$ is a palindrome, otherwise return false.Input: s = "racecar"Expected Output: true
+
+
+// #include <iostream>
+// #include <string>
+// using namespace std;
+
+// bool isPalindrome(int i, const string& s) {
+//     int n = s.length();
+
+//     // Base Case: Checked all pairs up to the middle
+//     if (i >= n / 2) {
+//         return true;
+//     }
+
+//     // Mismatch Check: Characters at symmetric positions must match
+//     if (s[i] != s[n - i - 1]) {
+//         return false;
+//     }
+
+//     // Recurse on the next character inward
+//     return isPalindrome(i + 1, s);
+// }
+
+// int main() {
+//     string s = "racecar";
+
+//     if (isPalindrome(0, s)) {
+//         cout << "\"" << s << "\" is a palindrome: true\n";
+//     } else {
+//         cout << "\"" << s << "\" is a palindrome: false\n";
+//     }
+
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+//  Aggregating results from left (pick) and right (not-pick) branches ($L + R$) up the call stack.
+//  Task: Return the total count of subsequences in arr whose elements add up to exactly K.Input: arr = [1, 2, 1], K = 2Expected Output: 2 (Subsequences: [1, 1] and [2])
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// int countSubsequencesWithSumK(int index, int currentSum, int k, const vector<int>& arr){
+//     if(index==arr.size()){
+//         if(currentSum==k){
+//             return 1;
+//         }
+//     return 0;
+//     }
+//     // TAKE VALUES.....
+//     int take=countSubsequencesWithSumK(index+1,currentSum+arr[index],k,arr);
+//     int nottake=countSubsequencesWithSumK(index+1,currentSum,k,arr);
+//     return take+nottake;
+// }
+// int main(){
+//     vector<int>arr={1,2,1};
+//     int totalcount=countSubsequencesWithSumK(0,0,2,arr);
+//     cout<<totalcount<<endl;
+//     return 0;
+// }
+
+
+
+
+
+
+
+// Concept: Lecture 7 — Early-exit pruning (bool recursion). 
+// The goal is to return true immediately upon finding the first valid non-empty subsequence, stopping all further recursion
+// .Task: Given an array arr and an integer M, return true if there exists any non-empty subsequence whose sum is divisible by M (i.e., sum % M == 0).
+// Otherwise, return false.Example:Input: arr = [3, 1, 4], M = 7Output: true (The subsequence [3, 4] has sum $7$, which is divisible by $7$
+
+
+
+
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// bool nonempty(int index,int m,int currentsum,bool pickedany,const vector<int>& a){
+//     if(index==a.size()){
+//         if(currentsum%m==0){
+//             return true;
+//         }
+//     return false;
+//     }
+//     // TAKE   VALUES........
+//     if(nonempty(index+1,m,currentsum+a[index],true,a)==true){
+//         return true;
+//     }
+//     // DON'T TAKE VALUES.........
+//     if(nonempty(index+1,m,currentsum,true,a)==true){
+//         return true;
+//     }
+//     return false;
+// }
+// int main(){
+//     vector<int>v1={3,1,4};
+//     nonempty(0,7,0,true,v1);
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+
+
+
+// You are given a list of available coin denominations (coins) and a target sum (amount). 
+// You need to find how many distinct combinations of these coins can be added together to equal the exact amount.
+
+// Key Rules
+// Infinite Supply: You can use each coin denomination as many times as you want (0 times, 1 time, 5 times, etc.).
+
+// Order Does Not Matter (Combinations, not Permutations): Choosing coin 1 then 2 is considered the exact same combination as choosing coin 2 then 1.
+//  You are counting unique groups of coins, not the sequence in which you pick them.
+
+// Return Type: The function should return a single integer representing the total count of valid combinations (not the combinations themselves).
+
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// int subSequence(int index,int target,int currentSum,vector<int>arr){
+//     if(currentSum==target){
+//         return 1;
+//     }
+//     if(index==arr.size()|| currentSum>target){
+//         return 0;
+//     }
+//     // VALUES AT SAME INDEX....
+//     int pick1 = 0;
+//     if (currentSum + arr[index] <= target) {
+//         pick1 = subSequence(index, target, currentSum + arr[index], arr);
+//     }
+
+//     //  NOT-PICK BRANCH (Advance to next index)
+//     int pick2 = subSequence(index + 1, target, currentSum, arr);
+
+//     return pick1 + pick2;
+// }
+// int main(){
+//     vector<int>v1={2,3,6,7};
+//     int totalCount=subSequence(0,7,0,v1);
+//     cout<<"Total ways: "<<totalCount<<endl;
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+
+
+// Question 1: Count Subsets with Sum $K$ (Finite Supply)Pattern: Finite Supply (Each element used at most once),
+// Return int count.Problem: Given an array of positive integers arr and an integer K,
+//  return the total number of non-empty subsets whose elements sum up to exactly K.
+
+
+
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// int subsets(int index,int target,int currentSum,vector<int>&arr){
+//     if(index==arr.size()){
+//         if(currentSum==target){
+//             return 1;
+//         }
+//     return 0;
+//     }
+//     // PICK VALUES.......
+//     int pick1=subsets(index+1,target,currentSum+arr[index],arr);
+//     // NOT PICK..........
+//     int pick2=subsets(index+1,target,currentSum,arr);
+//     return pick1+pick2;
+// }
+// int main(){
+//     vector<int>v1={1,3,4,6};
+//     int countSum=subsets(0,6,0,v1);
+//     cout<<"TOTAL SUBSETS: "<<countSum<<endl;
+// }
+
+
+
+
+
 
 
 
