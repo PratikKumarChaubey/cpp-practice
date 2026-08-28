@@ -136,3 +136,11 @@
 //     cout<<countSumwithK(0,9,0,v1);
 //     return 0;
 // }
+
+
+// #include<iostream>
+// using namespace std;
+// int main(){
+//     cout<<8<<endl;
+//     return 0;
+// }
