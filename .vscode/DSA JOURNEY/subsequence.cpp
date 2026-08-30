@@ -359,32 +359,111 @@
 
 
 
-#include<iostream>
-#include<vector>
-using namespace std;
-void allSubset(int index,vector<int>&arr,vector<int>&bag,vector<vector<int>>&results){
-    if(index==arr.size()){
-        results.push_back(bag);
-        return;
-    }
-    bag.push_back(arr[index]);
-    // PICK.. 
-    allSubset(index+1,arr,bag,results);
-    // POP AND THEN MOVE TO NOT PICK..
-    bag.pop_back();
-    allSubset(index+1,arr,bag,results);
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// void allSubset(int index,vector<int>&arr,vector<int>&bag,vector<vector<int>>&results){
+//     if(index==arr.size()){
+//         results.push_back(bag);
+//         return;
+//     }
+//     bag.push_back(arr[index]);
+//     // PICK.. 
+//     allSubset(index+1,arr,bag,results);
+//     // POP AND THEN MOVE TO NOT PICK..
+//     bag.pop_back();
+//     allSubset(index+1,arr,bag,results);
 
-}
-int main(){
-    vector<int>arr={1,2,3,4};
-    vector<int>bag;
-    vector<vector<int>>results;
-    allSubset(0,arr,bag,results);
-    for(const auto val:results){
-        cout<<"[";
-        for(int num:val){
-            cout<<num<<" ";
-        }
-        cout<<"]";
-    }
-}
+// }
+// int main(){
+//     vector<int>arr={1,2,3,4};
+//     vector<int>bag;
+//     vector<vector<int>>results;
+//     allSubset(0,arr,bag,results);
+//     for(const auto val:results){
+//         cout<<"[";
+//         for(int num:val){
+//             cout<<num<<" ";
+//         }
+//         cout<<"]";
+//     }
+// }
+
+
+
+
+
+
+
+// #include<iostream>
+// #include<vector>
+// #include<algorithm>
+// using namespace std;
+// void powerSet(int index,vector<int>&arr,vector<int>&bag,vector<vector<int>>&results){
+//     if(index==arr.size()){
+//         results.push_back(bag);
+//         return;
+//     }
+//     bag.push_back(arr[index]);
+//     powerSet(index+1,arr,bag,results);
+//     bag.pop_back();
+//     while(index+1<arr.size()&&arr[index+1]==arr[index]){
+//         index++;
+//     }
+//     powerSet(index+1,arr,bag,results);
+// }
+// int main(){
+//     vector<int>arr={2,5,6,43};
+//     vector<int>bag;
+//     vector<vector<int>>results;
+//     sort(arr.begin(),arr.end());
+//     powerSet(0,arr,bag,results);
+//     for(const auto val:results){
+//         cout<<"[";
+//         for(int num:val){
+//             cout<<num<<" ";
+//         }
+//         cout<<"]";
+//     }
+// }
+
+
+
+
+
+
+
+// #include <iostream>
+// #include <vector>
+// #include <algorithm>
+// using namespace std;
+
+// void sumofSubsequence(int index, int currentSum, vector<int>& arr, vector<int>& results) {
+//     if (index == arr.size()) {
+//         results.push_back(currentSum);
+//         return;
+//     }
+
+//     // Pick branch: add arr[index] to the sum
+//     sumofSubsequence(index + 1, currentSum + arr[index], arr, results);
+
+//     // Not-pick branch: pass currentSum as is
+//     sumofSubsequence(index + 1, currentSum, arr, results);
+// }
+
+// int main() {
+//     vector<int> arr = {2, 3, 5, 7, 9, 15};
+//     vector<int> results;
+
+//     sumofSubsequence(0, 0, arr, results);
+//     sort(results.begin(), results.end());
+
+//     for (int val : results) {
+//         cout << "[" << val << "] ";
+//     }
+//     cout << endl;
+
+//     return 0;
+// }
+
+
