@@ -512,6 +512,661 @@
 
 
 
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// void subsequence(int index,int target,int max,int currentSum,vector<int>&bag,vector<vector<int>>&result){
+//     if (bag.size() == max) {
+//         if (currentSum == target) {
+//             result.push_back(bag);
+//         }
+//         return;
+//     }
+//     if(index>9 ||currentSum>target){
+//         return;
+//     }
+//     bag.push_back(index);
+//     subsequence(index+1,target,max,currentSum+index,bag,result);
+//     bag.pop_back();
+//     subsequence(index+1,target,max,currentSum,bag,result);
+// } 
+// int main(){
+//     vector<int>bag;
+//     vector<vector<int>>results;
+//     subsequence(1,7,3,0,bag,results);
+//     for(const auto& val:results){
+//         cout<<"[";
+//         for(int num:val){
+//             cout<<num<<" ";
+//         }
+//         cout<<"]";
+//     }
+//     return 0;
+// }
+
+
+
+
+
+
+// Question 2 of 4: Combination Sum II (LeetCode 40)
+// Problem Statement
+// Given an array of integers candidates (which may contain duplicate elements) and a target integer target, return all unique combinations where the numbers sum up to target.
+
+// Each number in candidates may only be used once per combination.
+
+// The solution set must not contain duplicate combinations.
+
+// Constraint: Do not use std::set for deduplication.
+
+// Examples
+// Example 1:
+
+// candidates = [10, 1, 2, 7, 6, 1, 5], target = 8
+
+// Output:
+
+// [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]
+
+// Example 2:
+
+// candidates = [2, 5, 2, 1, 2], target = 5
+
+// Output:
+
+// [[1, 2, 2], [5]]
+
+
+
+
+// #include<iostream>
+// #include<vector>
+// #include<algorithm>
+// using namespace std;
+
+// void subsequence(int index,int currentSum,int target,vector<int>&arr,vector<int>&bag,vector<vector<int>>&results){
+//     if(index==arr.size()){
+//         if(currentSum==target){
+//             results.push_back(bag);
+//             return;
+//         }
+//     return;
+//     }   
+//     if(currentSum>target){
+//         return;
+//     }
+//     bag.push_back(arr[index]);
+//     subsequence(index+1,currentSum+arr[index],target,arr,bag,results);
+//     bag.pop_back();
+//     while(index+1<arr.size() && arr[index+1]==arr[index]){
+//         index++;
+//     }
+//     subsequence(index+1,currentSum,target,arr,bag,results);
+// }
+// int main(){
+//     vector<int>arr={2,3,4,5,7,9};
+//     vector<int>bag;
+//     vector<vector<int>>results;
+//     sort(arr.begin(),arr.end());
+//     subsequence(0,0,9,arr,bag,results);
+//     for(const auto & val:results){
+//         cout<<"[";
+//         for(int num:val){
+//             cout<<num<<" ";
+//         }
+//         cout<<"]";
+//     }
+//     return 0;
+// }
+
+
+
+
+
+// Question 3 of 4: Count Subsequences with Sum K (Zero-Inclusive)
+// Problem Statement
+// Given an array arr containing non-negative integers (which can include 0) and a target sum k,
+//  return the total count of subsets/subsequences whose elements sum up to k.
+
+// Function must return an int representing the total count.
+
+// Must use scalar recursion aggregation (return l + r).
+
+// Do not use any global variables or pass-by-reference counter
+
+
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// int subsequence(int index,int currentSum,int target,vector<int>&arr){
+//     if(currentSum>target){
+//         return 0;
+//     }
+//     if(index==arr.size()){
+//         if(currentSum==target){
+//             return 1;
+//         }
+//     return 0;
+//     }
+//     int pick=subsequence(index+1,currentSum+arr[index],target,arr);
+//     int notpick=subsequence(index+1,currentSum,target,arr);
+//     return pick+notpick;
+// }
+// int main(){
+//     vector<int>arr={2,3,5,7,9,1};
+//     cout<<subsequence(0,0,9,arr);
+//     return 0;
+// }
+
+
+
+
+
+// Question 4 of 4: Combination Sum I (LeetCode 39)
+// Problem Statement:
+
+// Given an array of distinct integers candidates and a target integer target, 
+// return a list of all unique combinations where the chosen numbers sum to target.
+
+// The same number may be chosen an unlimited number of times.
+
+// Two combinations are unique if the frequency of at least one of the chosen numbers is different.
+
+
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// void subsequence(int index,int currentSum,int target,vector<int>&arr,vector<int>&bag,vector<vector<int>>&results){
+//     if(currentSum==target){
+//         results.push_back(bag);
+//         return;
+//     }
+//     if(index==arr.size()){
+//         return;
+//     }
+//     if(currentSum>target){
+//         return;
+//     }
+//     bag.push_back(arr[index]);
+//     subsequence(index,currentSum+arr[index],target,arr,bag,results);
+//     bag.pop_back();
+//     subsequence(index+1,currentSum,target,arr,bag,results);
+
+// }
+// int main(){
+//     vector<int>arr={1,2,3,4};
+//     vector<int>bag;
+//     vector<vector<int>>results;
+//     subsequence(0,0,3,arr,bag,results);
+//     for(const auto& val:results){
+//         cout<<"[";
+//         for(int num:val){
+//             cout<<num<<" ";
+//         }
+//         cout<<"]";
+//     }
+//     return 0;
+// }
+
+
+
+
+
+
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+//     int arr[10] = {10, 20, 10, 20, 30, 10, 40, 50, 60, 70};
+//     int n = 10;
+//     int targetRank = 3;
+//     int nonRepeatingRank = 0;
+
+//     for (int i = 0; i < n; i++) {
+//         int freq = 0;
+//         for (int j = 0; j < n; j++) {
+//             if (arr[i] == arr[j]) {
+//                 freq++;
+//             }
+//         }
+
+//         if (freq == 1) {
+//             nonRepeatingRank++;
+//             if (nonRepeatingRank == targetRank) {
+//                 cout << arr[i] ;
+//                 return 0;
+//             }
+//         }
+//     }
+//     return 0;
+// }
+
+
+
+
+// LEETCODE 46..
+
+/* Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+Example 1:
+Input: nums = [1,2,3]
+Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] */
+
+
+
+
+/*
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+void permutations(int index,vector<int>&arr,vector<vector<int>>&target){
+    if(index==arr.size()){
+        target.push_back(arr);
+        return;
+    }
+    for(int i=index;i<arr.size();i++){
+        swap(arr[index],arr[i]);
+        permutations(index+1,arr,target);
+        swap(arr[index],arr[i]);
+    }
+}
+int main(){
+    vector<int>arr={1,4,6,7};
+    vector<vector<int>>bag;
+    permutations(0,arr,bag);
+    for(const auto& val:bag){
+        cout<<"[";
+        for(int num:val){
+            cout<<num<<" ";
+        }
+        cout<<"]";
+    }
+}
+
+*/
+
+
+
+
+// LEET CODE 47..
+
+/* class Solution {
+    void permutations(int index,vector<int>&nums,vector<vector<int>>&bag){
+        if(index==nums.size()){
+            bag.push_back(nums);
+            return;
+        }
+        unordered_set<int>seen;
+        for(int i=index;i<nums.size();i++){
+            if(seen.find(nums[i])!=seen.end()){
+                continue;
+            }
+            seen.insert(nums[i]);
+            swap(nums[index],nums[i]);
+            permutations(index+1,nums,bag);
+            swap(nums[index],nums[i]);
+        }
+    }
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>>result;
+        permutations(0,nums,result);
+        return result;
+    }
+};
+*/
+
+
+
+
+// 10  PRACTICE QUESTIONS..
+
+
+
+
+// Task: Compute the sum of numbers from $1$ 
+// to $N$ without using global or reference variables—return 
+// the integer value directly up the call stack ($f(n) = n + f(n-1)$).Input: $N = 5$Expected Output: $15$
+/*
+#include<iostream>
+using namespace std;
+int sumtillN(int n){
+    if(n==0){
+        return 0;
+    }
+    if(n==1){
+        return 1;
+    }
+    return n+sumtillN(n-1);
+}
+int main(){
+    cout<<sumtillN(5);
+    return 0;
+}
+*/
+
+
+/*
+Question 2: Reverse an Array In-Place (Single-Pointer Recursion)
+Task: Reverse a vector<int> in-place recursively using only a single pointer i from $0$ up to $n/2$.
+Input: arr = [1, 2, 3, 4, 5]Expected Output: [5, 4, 3, 2, 1]
+*/
+
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// void reverseArray(int index,vector<int>&arr,vector<int>&bag){
+//     if(index==arr.size()){
+//         return;
+//     }
+//     reverseArray(index+1,arr,bag);
+//     bag.push_back(arr[index]);
+// }
+// int main(){
+//     vector<int>arr={2,3,4,6,7};
+//     vector<int>bag;
+//     reverseArray(0,arr,bag);
+//     cout<<"[";
+//     for(int num:bag){
+//             cout<<num<<" ";
+//         }
+//         cout<<"]";
+    
+//     return 0;
+// }
+
+
+/*
+#include<iostream>
+#include<vector>
+using namespace std;
+void reverseArray(int index,vector<int>&arr){
+    if(index>=arr.size()/2){
+        return;
+    }
+    swap(arr[index],arr[arr.size()-index-1]);
+    reverseArray(index+1,arr);
+}
+int main(){
+    vector<int>arr={2,3,5,6,8,4,7,9};
+    reverseArray(0,arr);
+    cout<<"[";
+    for(int val:arr){
+        cout<<val<<" ";
+    }
+    cout<<"]";
+    return 0;
+}
+*/
+
+
+
+
+/*
+Question 4: Generate All Subsequences (Pick / Don't Pick)
+Core Concept: Binary decision tree (Include current element vs. Exclude current element).
+
+Task: Write a recursive function void printF(int index, vector<int>& bag, vector<int>& arr) to print all subsequences.
+
+Input: arr = [3, 1, 2]
+
+Expected Output: All 8 subsequences printed:
+[3, 1, 2], [3, 1], [3, 2], [3], [1, 2], [1], [2], []
+*/
+
+
+/*
+#include<iostream>
+#include<vector>
+using namespace std;
+void subsequence(int index,vector<int>&bag,vector<int>&arr,vector<vector<int>>&result){
+    if(index==arr.size()){
+        result.push_back(bag);
+        return;
+    }
+    bag.push_back(arr[index]);
+    subsequence(index+1,bag,arr,result);
+    bag.pop_back();
+    subsequence(index+1,bag,arr,result);
+}
+int main(){
+    vector<int>arr={2,4,5,7};
+    vector<int>bag;
+    vector<vector<int>>result;
+    subsequence(0,bag,arr,result);
+    for(const auto& val:result){
+        cout<<"[";
+        for(int num:val){
+            cout<<num<<" ";
+        }
+        cout<<"]";
+    }
+    return 0;
+}
+*/
+
+/*
+Question 5: Print All Subsequences with Sum = $K$Task: Modify your subsequence logic to track a running sum. 
+Only save/print bag if the sum of elements equals $K$ when reaching the base case.Input: arr = [1, 2, 1], K = 2Expected Subsequences: [1, 1], [2]
+*/
+
+
+/*
+#include<iostream>
+#include<vector>
+using namespace std;
+void subsequenceSumK(int index,int target,vector<int>&arr,vector<int>&bag,vector<vector<int>>&results){
+    if(target==0){
+        results.push_back(bag);
+        return;
+    }
+    if(index==arr.size() || target<0){
+        return;
+    }
+    bag.push_back(arr[index]);
+    subsequenceSumK(index+1,target-arr[index],arr,bag,results);
+    bag.pop_back();
+    subsequenceSumK(index+1,target,arr,bag,results);
+}
+int main(){
+    vector<int>arr={3,4,5,6,8,1,3};
+    vector<int>bag;
+    vector<vector<int>>results;
+    subsequenceSumK(0,12,arr,bag,results);
+    for(const auto& val:results){
+        cout<<"[";
+        for(int num:val){
+            cout<<num<<" ";
+        }
+        cout<<"]";
+    }
+    return 0;
+
+}
+
+*/
+
+
+
+
+
+/*
+Core Concept: Boolean call-stack propagation to halt tree traversal immediately upon finding the first valid match.
+
+Task: Modify your function signature to return bool:
+
+C++
+bool subsequenceSumKOne(int index, int target, vector<int>& arr, vector<int>& bag);
+Requirement: The moment the first valid subsequence is found and printed, return true so that all parent frames 
+immediately terminate without exploring any remaining branches.
+
+Input: arr = [1, 2, 1], K = 2
+
+Expected Output: [1, 1] (only the first valid match, nothing else printed)
+*/
+
+/*
+#include<iostream>
+#include<vector>
+using namespace std;
+bool firstSubsequence(int index,int target,vector<int>&arr,vector<int>&bag,vector<vector<int>>&results){
+    if(target==0){
+        results.push_back(bag);
+        return true;
+    }
+    if(index==arr.size()|| target<0){
+        return false;
+    }
+    bag.push_back(arr[index]);
+    if(firstSubsequence(index+1,target-arr[index],arr,bag,results)==true){
+        return true;
+    }
+    bag.pop_back();
+    if(firstSubsequence(index+1,target,arr,bag,results)==true){
+        return true;
+    }
+    return false;
+}
+int main(){
+    vector<int>arr={2,3,4,9};
+    vector<int>bag;
+    vector<vector<int>>results;
+    firstSubsequence(0,9,arr,bag,results);
+    for(const auto& val:results){
+        cout<<"[";
+        for(int num:val){
+            cout<<num<<" ";
+        }
+        cout<<"]";
+    }
+    return 0;
+}
+*/
+
+
+
+
+// Question 7: Count Subsequences with Sum = $K$Write the recursive function using pure functional return values without using any global
+//  variables or pass-by-reference counters.Task SpecificationsFunction Signature:C++int countSubsequences(int index, int target, vector<int>& arr)
+// Rules:No int &count reference variables.No global variables.No bag or results vectors (we only care about the count, not the elements).
+// Base case returns 1 when a valid combination is formed, 0 on invalid paths.Each recursive frame sums the counts of its sub-branches 
+// (return left + right).Input: arr = [1, 2, 1], target = 2Expected Output: 2
+
+
+/*
+#include<iostream>
+#include<vector>
+using namespace std;
+int subSequenceCount(int index,int target,vector<int>&arr,vector<int>&bag){
+    if(index==arr.size()){
+        if(target==0){
+            return 1;
+        }
+    return 0;
+    }
+    // PICKS VALUE AND SUBTRACTS FROM TARGET...
+    int pick=subSequenceCount(index+1,target-arr[index],arr,bag);
+    // POP BACKS VALUE AND INCREMENTS ITS INDEX BUT DOSENT INTERFERE WITH THE TARGET.
+    int notPick=subSequenceCount(index+1,target,arr,bag);   
+    return pick+notPick;
+}
+int main(){
+    vector<int>arr={2,3,4,1,3};
+    vector<int>bag;
+    cout<<subSequenceCount(0,6,arr,bag)<<endl;
+    return 0;
+}
+*/
+
+
+
+
+
+// Core Concept: In-place element swapping tree ($O(1)$ auxiliary space excluding recursion stack).
+// Task: Given an array nums of distinct integers, generate all possible permutations.Function Signature:C++void permuteHelper(int index, vector<int>& nums,
+//      vector<vector<int>>& ans)
+// Input: nums = [1, 2, 3]Expected Output: All 6 unique permutations:[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,2,1], [3,1,2]
+
+/*
+#include<iostream>
+#include<vector>
+using namespace std;
+void permutation(int index,vector<int>&arr,vector<vector<int>>&result){
+    if(index==arr.size()){
+        result.push_back(arr);
+        return;
+    }
+    for(int i=index;i<arr.size();i++){
+        swap(arr[index],arr[i]);
+        permutation(index+1,arr,result);
+        swap(arr[index],arr[i]);
+    }
+}
+int main(){
+    vector<int>arr={3,5,7};
+    vector<vector<int>>result;
+    permutation(0,arr,result);
+    for(const auto& val:result){
+        cout<<"[";
+    for(int num:val){
+        cout<<num<<" ";
+    }
+    cout<<"]";
+    }
+    
+    return 0;
+}
+
+*/
+
+
+
+
+//LEETCODE 47... PERMUTATION WITH NO DUPLICATES.....
+/*
+#include<iostream>
+#include<vector>
+#include<unordered_set>
+using namespace std;
+void permutation(int index,vector<int>&arr,vector<int>&bag,vector<vector<int>>&result){
+    if(index==arr.size()){
+        result.push_back(bag);
+        return;
+    }
+    unordered_set<int>seen;
+    for(int i=1;i<=arr.size();i++){
+        bag.push_back(arr[index]);
+        seen.insert(arr[i]);
+    }
+    for(int j=index;j<arr.size();j++){
+        if(seen.find(arr[j])!=seen.end()){
+            continue;
+        }
+        bag.push_back(arr[j]);
+        swap(arr[index],arr[j]);
+        permutation(index+1,arr,bag,result);
+        swap(arr[index],arr[j]);
+    }
+}
+int main(){
+    vector<int>arr={2,3,4,6};
+    vector<int>bag;
+    vector<vector<int>>nums;
+    permutation(0,arr,bag,nums);
+    for(const auto& val:nums){
+        cout<<"[";
+        for(int num:val){
+            cout<<num<<" ";
+        }
+        cout<<"]";
+    }
+    return 0;
+}
+*/
+
+
 
 
 
